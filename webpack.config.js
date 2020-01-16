@@ -7,7 +7,7 @@ module.exports = {
   mode: "development",
   devtool: "source-map",
   entry: {
-    main: './js/app.js',
+    bundle: './js/app.js',
   },
   context: path.resolve(__dirname, 'src'),
   output: {
@@ -15,6 +15,24 @@ module.exports = {
     path: path.resolve(__dirname, 'dist'),
     publicPath: '/dist'
   },
+  module: {
+         rules: [
+           {
+            test: /\.css$/,
+            use: [
+             'style-loader',
+             'css-loader',
+             'postcss-loader'
+             ],
+           },
+           {
+            test: /\.(png|svg|jpg|gif)$/,
+            use: [
+            'file-loader',
+            ],
+           },
+         ],
+      },
   plugins: [
       new HtmlWebpackPlugin({
           title: 'Output Management',
